@@ -6,41 +6,22 @@ import {
   Select,
   MenuItem,
 } from '@material-ui/core'
+import { REGEX_FLAGS } from '../constants'
 
-export default function RegexBuilder() {
-  const regexFlags = [
-    {
-      id: 'I',
-      hint: 'Ignore Case',
-    },
-    {
-      id: 'L',
-      hint:
-        'Make \\w, \\W, \\b, \\B, \\s and \\S dependent on the current locale.',
-    },
-    {
-      id: 'M',
-      hint: 'Multi-line Regular Expression',
-    },
-    {
-      id: 'S',
-      hint:
-        'Make the "." special character match any character at all, ' +
-        'including a newline',
-    },
-    {
-      id: 'U',
-      hint:
-        'Make \\w, \\W, \\b, \\B, \\d, \\D, \\s and \\S dependent on the ' +
-        'Unicode character properties database.',
-    },
-    {
-      id: 'X',
-      hint: 'Verbose',
-    },
-  ]
+export interface RegexForm {
+  regex: string
+  testString: string
+  flags: number[]
+  matchType: 'match' | 'search' | 'findall'
+}
 
-  const renderedFlags = regexFlags.map((flag) => (
+interface RegexBuilderProps {
+  onChange: (value: RegexForm) => any
+  value: RegexForm
+}
+
+export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
+  const renderedFlags = REGEX_FLAGS.map((flag) => (
     <li key={flag.id}>
       <FormControlLabel
         control={<Checkbox value={flag.id} />}
@@ -50,16 +31,33 @@ export default function RegexBuilder() {
     </li>
   ))
 
+  const handleRegexChange = (event: any) =>
+    onChange({
+      ...value,
+      regex: event.target.value,
+    })
+
   return (
     <form>
       <div>
         regex = """
-        <TextField label="regex" variant="outlined" />
+        <TextField
+          id="regex"
+          label="Regex"
+          variant="outlined"
+          value={value.regex}
+          onChange={handleRegexChange}
+        />
         """
       </div>
       <div>
         test_string = """
-        <TextField label="test string" multiline variant="outlined" />
+        <TextField
+          id="test-string"
+          label="Test String"
+          multiline
+          variant="outlined"
+        />
         """
       </div>
       <pre>

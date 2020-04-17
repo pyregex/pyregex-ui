@@ -1,7 +1,7 @@
 import React from 'react'
 import { CssBaseline, Container } from '@material-ui/core'
 import TopBar from './TopBar'
-import RegexBuilder from './RegexBuilder'
+import RegexBuilder, { RegexForm } from './RegexBuilder'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
@@ -15,6 +15,13 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles()
 
+  const regexForm: RegexForm = {
+    regex: '',
+    testString: '',
+    matchType: 'match',
+    flags: [],
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -22,7 +29,10 @@ function App() {
       <main>
         <div className={classes.appBarSpacer} />
         <Container>
-          <RegexBuilder />
+          <RegexBuilder
+            value={regexForm}
+            onChange={console.log.bind(undefined, 'REGEX_ONCHANGE=')}
+          />
           {/* TODO: results pane */}
           {/* TODO: help */}
         </Container>
