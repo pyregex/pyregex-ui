@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   TextField,
   Checkbox,
@@ -7,6 +7,7 @@ import {
   MenuItem,
 } from '@material-ui/core'
 import { REGEX_FLAGS } from '../constants'
+import { useDebounced } from '../hooks/input'
 
 export interface RegexForm {
   regex: string
@@ -24,7 +25,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
   const renderedFlags = REGEX_FLAGS.map((flag) => (
     <li key={flag.id}>
       <FormControlLabel
-        control={<Checkbox value={flag.id} />}
+        control={<Checkbox value={flag.id} id={`re-${flag.id}`} />}
         label={`re.${flag.id}`}
         title={flag.hint}
       />
@@ -69,7 +70,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
       </pre>
       <pre>
         &gt;&gt;&gt; re.compile(regex, flags).
-        <Select defaultValue={'match'}>
+        <Select defaultValue={'match'} id="match-type">
           <MenuItem value="match">match</MenuItem>
           <MenuItem value="search">search</MenuItem>
           <MenuItem value="findall">findall</MenuItem>
