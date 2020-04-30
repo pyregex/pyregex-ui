@@ -2,14 +2,14 @@ import React from 'react'
 import { CssBaseline, Container } from '@material-ui/core'
 import TopBar from './TopBar'
 import RegexBuilder, { RegexForm } from './RegexBuilder'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/styles'
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
 
-  appBarSpacer: theme.mixins.toolbar,
+  appBarSpacer: (theme as any).mixins.toolbar,
 }))
 
 function App() {
