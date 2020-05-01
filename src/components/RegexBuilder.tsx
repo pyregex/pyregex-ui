@@ -92,7 +92,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
       </div>
       <pre>
         &gt;&gt;&gt; flags =
-        <ul>
+        <ul className="regex-form__regex-flags">
           <li>0</li>
           {renderedFlags}
         </ul>

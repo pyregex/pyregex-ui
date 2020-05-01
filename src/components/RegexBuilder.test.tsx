@@ -76,6 +76,9 @@ describe('RegexBuilder', () => {
   })
 
   describe('Regex flags', () => {
+    let container: HTMLElement
+    let asFragment: () => DocumentFragment
+
     beforeEach(() => {
       callback = jest.fn()
       regexForm = { ...DEFAULT_FORM, flags: ['M'] }
@@ -84,6 +87,12 @@ describe('RegexBuilder', () => {
         <RegexBuilder value={regexForm} onChange={callback} />,
       )
       getByLabelText = wrapper.getByLabelText
+      container = wrapper.container
+      asFragment = wrapper.asFragment
+    })
+
+    it('renders the array of flags as checkboxes', () => {
+      expect(asFragment()).toMatchSnapshot()
     })
 
     it('adds a flag to the array', () => {
@@ -104,7 +113,5 @@ describe('RegexBuilder', () => {
       })
     })
   })
-  it.todo('saves updates the array of flags')
-
   it.todo('saves the python method')
 })
