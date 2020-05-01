@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CssBaseline, Container } from '@material-ui/core'
 import TopBar from './TopBar'
 import RegexBuilder, { RegexForm } from './RegexBuilder'
@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => {
 function App() {
   const classes = useStyles()
 
-  const regexForm: RegexForm = {
+  const [regexForm, setRegexForm] = useState<RegexForm>({
     regex: '',
     testString: '',
     matchType: 'match',
     flags: [],
-  }
+  })
 
   return (
     <div className={classes.root}>
@@ -37,7 +37,10 @@ function App() {
         <Container className={classes.mainContainer}>
           <RegexBuilder
             value={regexForm}
-            onChange={console.log.bind(undefined, 'REGEX_ONCHANGE=')}
+            onChange={(form) => {
+              console.log.bind(undefined, 'REGEX_ONCHANGE=')
+              setRegexForm(form)
+            }}
           />
           {/* TODO: results pane */}
           {/* TODO: help */}

@@ -1,5 +1,28 @@
+jest.mock(
+  '@material-ui/core/Select',
+  () => ({
+    children,
+    onChange,
+    value,
+    title,
+  }: {
+    children: any[]
+    onChange: (event: ChangeEvent<HTMLSelectElement>) => void
+    value: string
+    title: string
+  }) => (
+    <select onChange={onChange} value={value} title={title}>
+      {children.map((c) => (
+        <option key={c.value} value={c.value}>
+          {c.children}
+        </option>
+      ))}
+    </select>
+  ),
+)
+
 import { render, fireEvent } from '@testing-library/react'
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import RegexBuilder, { RegexForm } from './RegexBuilder'
 
 describe('RegexBuilder', () => {
@@ -76,7 +99,6 @@ describe('RegexBuilder', () => {
   })
 
   describe('Regex flags', () => {
-    let container: HTMLElement
     let asFragment: () => DocumentFragment
 
     beforeEach(() => {
@@ -87,12 +109,13 @@ describe('RegexBuilder', () => {
         <RegexBuilder value={regexForm} onChange={callback} />,
       )
       getByLabelText = wrapper.getByLabelText
-      container = wrapper.container
       asFragment = wrapper.asFragment
     })
 
     it('renders the array of flags as checkboxes', () => {
-      expect(asFragment()).toMatchSnapshot()
+      expect(
+        asFragment().querySelector('.regex-form__regex-flags'),
+      ).toMatchSnapshot()
     })
 
     it('adds a flag to the array', () => {
@@ -113,5 +136,38 @@ describe('RegexBuilder', () => {
       })
     })
   })
-  it.todo('saves the python method')
+
+  describe('Match type selector', () => {
+    let getByTitle: Function
+
+    beforeEach(() => {
+      callback = jest.fn()
+      regexForm = { ...DEFAULT_FORM }
+
+      const wrapper = render(
+        <RegexBuilder value={regexForm} onChange={callback} />,
+      )
+      getByLabelText = wrapper.getByLabelText
+      getByTitle = wrapper.getByTitle
+    })
+
+    it('renders the python method', () => {
+      expect(getByTitle('Match type')).toMatchObject({
+        value: DEFAULT_FORM.matchType,
+      })
+    })
+
+    it('saves the python method', () => {
+      fireEvent.change(getByTitle('Match type'), {
+        target: {
+          value: 'search',
+        },
+      })
+
+      expect(callback).toHaveBeenCalledWith({
+        ...DEFAULT_FORM,
+        matchType: 'search',
+      })
+    })
+  })
 })

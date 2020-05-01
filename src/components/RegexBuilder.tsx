@@ -56,7 +56,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
         control={
           <Checkbox
             value={flag.id}
-            checked={value.flags.indexOf(flag.id) != -1}
+            checked={value.flags.indexOf(flag.id) !== -1}
             onChange={handleFlagsClick}
           />
         }
@@ -99,7 +99,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
       </pre>
       <pre>
         &gt;&gt;&gt; re.compile(regex, flags).
-        <Select defaultValue={'match'}>
+        <Select value={value.matchType} title="Match type">
           <MenuItem value="match">match</MenuItem>
           <MenuItem value="search">search</MenuItem>
           <MenuItem value="findall">findall</MenuItem>
