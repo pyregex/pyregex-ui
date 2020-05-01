@@ -37,6 +37,12 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
       regex: event.target.value,
     })
 
+  const handleTestStringChange = (event: any) =>
+    onChange({
+      ...value,
+      testString: event.target.value,
+    })
+
   return (
     <form>
       <div>
@@ -57,6 +63,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
           label="Test String"
           multiline
           variant="outlined"
+          onChange={handleTestStringChange}
         />
         """
       </div>

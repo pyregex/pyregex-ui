@@ -11,9 +11,9 @@ const DEFAULT_FORM: RegexForm = {
 
 describe('RegexBuilder', () => {
   describe('Regex field', () => {
-    let callback
-    let regexForm
-    let getByLabelText
+    let callback: (value: RegexForm) => any
+    let regexForm: RegexForm
+    let getByLabelText: Function
 
     beforeEach(() => {
       callback = jest.fn()
@@ -41,11 +41,21 @@ describe('RegexBuilder', () => {
         regex: '.*',
       })
     })
+
+    it('saves the test string', () => {
+      fireEvent.change(getByLabelText('Test String'), {
+        target: {
+          value: 'a string',
+        },
+      })
+      expect(callback).toHaveBeenCalledWith({
+        ...DEFAULT_FORM,
+        testString: 'a string',
+      })
+    })
+    it.todo('saves the flags as an array')
+    it.todo('saves updates the array of flags')
+
+    it.todo('saves the python method')
   })
-
-  it.todo('saves the test string')
-  it.todo('saves the flags as an array')
-  it.todo('saves updates the array of flags')
-
-  it.todo('saves the python method')
 })
