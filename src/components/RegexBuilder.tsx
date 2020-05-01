@@ -11,7 +11,7 @@ import { REGEX_FLAGS } from '../constants'
 export interface RegexForm {
   regex: string
   testString: string
-  flags: number[]
+  flags: string[]
   matchType: 'match' | 'search' | 'findall'
 }
 
@@ -21,16 +21,6 @@ interface RegexBuilderProps {
 }
 
 export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
-  const renderedFlags = REGEX_FLAGS.map((flag) => (
-    <li key={flag.id}>
-      <FormControlLabel
-        control={<Checkbox value={flag.id} />}
-        label={`re.${flag.id}`}
-        title={flag.hint}
-      />
-    </li>
-  ))
-
   const handleRegexChange = (event: any) =>
     onChange({
       ...value,
@@ -42,6 +32,39 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
       ...value,
       testString: event.target.value,
     })
+
+  const handleFlagsClick = (event: any) => {
+    const checked: boolean = event.target.checked
+    const flag: string = event.target.value
+    let newValue: string[]
+    if (checked) {
+      newValue = [...value.flags, flag]
+    } else {
+      newValue = [...value.flags]
+      const index = newValue.indexOf(flag)
+      newValue.splice(index, 1)
+    }
+    onChange({
+      ...value,
+      flags: newValue,
+    })
+  }
+
+  const renderedFlags = REGEX_FLAGS.map((flag) => (
+    <li key={flag.id}>
+      <FormControlLabel
+        control={
+          <Checkbox
+            value={flag.id}
+            checked={value.flags.indexOf(flag.id) != -1}
+            onChange={handleFlagsClick}
+          />
+        }
+        label={`re.${flag.id}`}
+        title={flag.hint}
+      />
+    </li>
+  ))
 
   return (
     <form>
