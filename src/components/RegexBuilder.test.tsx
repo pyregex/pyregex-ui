@@ -1,23 +1,14 @@
+interface FakeSelectProps {
+  children: any[]
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  value: string
+  title: string
+}
+
 jest.mock(
   '@material-ui/core/Select',
-  () => ({
-    children,
-    onChange,
-    value,
-    title,
-  }: {
-    children: any[]
-    onChange: (event: ChangeEvent<HTMLSelectElement>) => void
-    value: string
-    title: string
-  }) => (
-    <select onChange={onChange} value={value} title={title}>
-      {children.map((c) => (
-        <option key={c.value} value={c.value}>
-          {c.children}
-        </option>
-      ))}
-    </select>
+  () => ({ onChange, value, title }: FakeSelectProps) => (
+    <input type="text" onChange={onChange} value={value} title={title} />
   ),
 )
 

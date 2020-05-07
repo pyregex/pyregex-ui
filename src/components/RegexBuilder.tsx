@@ -50,6 +50,13 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
     })
   }
 
+  const handleMatchTypeChange = (event: any) => {
+    onChange({
+      ...value,
+      matchType: event.target.value,
+    })
+  }
+
   const renderedFlags = REGEX_FLAGS.map((flag) => (
     <li key={flag.id}>
       <FormControlLabel
@@ -99,7 +106,11 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
       </pre>
       <pre>
         &gt;&gt;&gt; re.compile(regex, flags).
-        <Select value={value.matchType} title="Match type">
+        <Select
+          value={value.matchType}
+          onChange={handleMatchTypeChange}
+          title="Match type"
+        >
           <MenuItem value="match">match</MenuItem>
           <MenuItem value="search">search</MenuItem>
           <MenuItem value="findall">findall</MenuItem>
