@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegexBuilder Regex flags renders the array of flags as checkboxes 1`] = `
+<ul
+  class="regex-form__regex-flags"
+>
+  <li>
+    0
+  </li>
+  <li>
+    <label
+      class="MuiFormControlLabel-root"
+      title="Ignore Case"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-631 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-634"
+            data-indeterminate="false"
+            type="checkbox"
+            value="I"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        re.I
+      </span>
+    </label>
+  </li>
+  <li>
+    <label
+      class="MuiFormControlLabel-root"
+      title="Make \\\\w, \\\\W, \\\\b, \\\\B, \\\\s and \\\\S dependent on the current locale."
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-631 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-634"
+            data-indeterminate="false"
+            type="checkbox"
+            value="L"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        re.L
+      </span>
+    </label>
+  </li>
+  <li>
+    <label
+      class="MuiFormControlLabel-root"
+      title="Multi-line Regular Expression"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-631 MuiCheckbox-root MuiCheckbox-colorSecondary PrivateSwitchBase-checked-632 Mui-checked MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            checked=""
+            class="PrivateSwitchBase-input-634"
+            data-indeterminate="false"
+            type="checkbox"
+            value="M"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.11 0 2-.9 2-2V5c0-1.1-.89-2-2-2zm-9 14l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        re.M
+      </span>
+    </label>
+  </li>
+  <li>
+    <label
+      class="MuiFormControlLabel-root"
+      title="Make the \\".\\" special character match any character at all, including a newline"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-631 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-634"
+            data-indeterminate="false"
+            type="checkbox"
+            value="S"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        re.S
+      </span>
+    </label>
+  </li>
+  <li>
+    <label
+      class="MuiFormControlLabel-root"
+      title="Make \\\\w, \\\\W, \\\\b, \\\\B, \\\\d, \\\\D, \\\\s and \\\\S dependent on the Unicode character properties database."
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-631 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-634"
+            data-indeterminate="false"
+            type="checkbox"
+            value="U"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        re.U
+      </span>
+    </label>
+  </li>
+  <li>
+    <label
+      class="MuiFormControlLabel-root"
+      title="Verbose"
+    >
+      <span
+        aria-disabled="false"
+        class="MuiButtonBase-root MuiIconButton-root PrivateSwitchBase-root-631 MuiCheckbox-root MuiCheckbox-colorSecondary MuiIconButton-colorSecondary"
+      >
+        <span
+          class="MuiIconButton-label"
+        >
+          <input
+            class="PrivateSwitchBase-input-634"
+            data-indeterminate="false"
+            type="checkbox"
+            value="X"
+          />
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+            />
+          </svg>
+        </span>
+        <span
+          class="MuiTouchRipple-root"
+        />
+      </span>
+      <span
+        class="MuiTypography-root MuiFormControlLabel-label MuiTypography-body1"
+      >
+        re.X
+      </span>
+    </label>
+  </li>
+</ul>
+`;

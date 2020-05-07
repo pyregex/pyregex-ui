@@ -1,26 +1,32 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { CssBaseline, Container } from '@material-ui/core'
 import TopBar from './TopBar'
 import RegexBuilder, { RegexForm } from './RegexBuilder'
-import { makeStyles } from '@material-ui/styles'
+import { makeStyles } from '@material-ui/core/styles'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
+const useStyles = makeStyles((theme) => {
+  return {
+    root: {
+      display: 'flex',
+    },
 
-  appBarSpacer: (theme as any).mixins.toolbar,
-}))
+    appBarSpacer: theme.mixins.toolbar,
+
+    mainContainer: {
+      padding: `${theme.spacing(2)}px`,
+    },
+  }
+})
 
 function App() {
   const classes = useStyles()
 
-  const regexForm: RegexForm = {
+  const [regexForm, setRegexForm] = useState<RegexForm>({
     regex: '',
     testString: '',
     matchType: 'match',
     flags: [],
-  }
+  })
 
   return (
     <div className={classes.root}>
@@ -28,10 +34,13 @@ function App() {
       <TopBar />
       <main>
         <div className={classes.appBarSpacer} />
-        <Container>
+        <Container className={classes.mainContainer}>
           <RegexBuilder
             value={regexForm}
-            onChange={console.log.bind(undefined, 'REGEX_ONCHANGE=')}
+            onChange={(form) => {
+              console.log.bind(undefined, 'REGEX_ONCHANGE=')
+              setRegexForm(form)
+            }}
           />
           {/* TODO: results pane */}
           {/* TODO: help */}

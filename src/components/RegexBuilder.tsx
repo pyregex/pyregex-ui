@@ -11,7 +11,7 @@ import { REGEX_FLAGS } from '../constants'
 export interface RegexForm {
   regex: string
   testString: string
-  flags: number[]
+  flags: string[]
   matchType: 'match' | 'search' | 'findall'
 }
 
@@ -21,21 +21,57 @@ interface RegexBuilderProps {
 }
 
 export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
-  const renderedFlags = REGEX_FLAGS.map((flag) => (
-    <li key={flag.id}>
-      <FormControlLabel
-        control={<Checkbox value={flag.id} />}
-        label={`re.${flag.id}`}
-        title={flag.hint}
-      />
-    </li>
-  ))
-
   const handleRegexChange = (event: any) =>
     onChange({
       ...value,
       regex: event.target.value,
     })
+
+  const handleTestStringChange = (event: any) =>
+    onChange({
+      ...value,
+      testString: event.target.value,
+    })
+
+  const handleFlagsClick = (event: any) => {
+    const checked: boolean = event.target.checked
+    const flag: string = event.target.value
+    let newValue: string[]
+    if (checked) {
+      newValue = [...value.flags, flag]
+    } else {
+      newValue = [...value.flags]
+      const index = newValue.indexOf(flag)
+      newValue.splice(index, 1)
+    }
+    onChange({
+      ...value,
+      flags: newValue,
+    })
+  }
+
+  const handleMatchTypeChange = (event: any) => {
+    onChange({
+      ...value,
+      matchType: event.target.value,
+    })
+  }
+
+  const renderedFlags = REGEX_FLAGS.map((flag) => (
+    <li key={flag.id}>
+      <FormControlLabel
+        control={
+          <Checkbox
+            value={flag.id}
+            checked={value.flags.indexOf(flag.id) !== -1}
+            onChange={handleFlagsClick}
+          />
+        }
+        label={`re.${flag.id}`}
+        title={flag.hint}
+      />
+    </li>
+  ))
 
   return (
     <form>
@@ -57,19 +93,24 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
           label="Test String"
           multiline
           variant="outlined"
+          onChange={handleTestStringChange}
         />
         """
       </div>
       <pre>
         &gt;&gt;&gt; flags =
-        <ul>
+        <ul className="regex-form__regex-flags">
           <li>0</li>
           {renderedFlags}
         </ul>
       </pre>
       <pre>
         &gt;&gt;&gt; re.compile(regex, flags).
-        <Select defaultValue={'match'}>
+        <Select
+          value={value.matchType}
+          onChange={handleMatchTypeChange}
+          title="Match type"
+        >
           <MenuItem value="match">match</MenuItem>
           <MenuItem value="search">search</MenuItem>
           <MenuItem value="findall">findall</MenuItem>
