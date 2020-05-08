@@ -1,14 +1,19 @@
 interface FakeSelectProps {
   children: any[]
   onChange: (event: ChangeEvent<HTMLInputElement>) => void
-  value: string
+  defaultValue: string
   title: string
 }
 
 jest.mock(
   '@material-ui/core/Select',
-  () => ({ onChange, value, title }: FakeSelectProps) => (
-    <input type="text" onChange={onChange} value={value} title={title} />
+  () => ({ onChange, defaultValue, title }: FakeSelectProps) => (
+    <input
+      type="text"
+      onChange={onChange}
+      defaultValue={defaultValue}
+      title={title}
+    />
   ),
 )
 
@@ -55,7 +60,6 @@ describe('RegexBuilder', () => {
       })
 
       expect(callback).toHaveBeenCalledWith({
-        ...DEFAULT_FORM,
         regex: '.*',
       })
     })
@@ -83,7 +87,6 @@ describe('RegexBuilder', () => {
         },
       })
       expect(callback).toHaveBeenCalledWith({
-        ...DEFAULT_FORM,
         testString: 'a string',
       })
     })
@@ -113,7 +116,6 @@ describe('RegexBuilder', () => {
       fireEvent.click(getByLabelText('re.I'))
 
       expect(callback).toHaveBeenCalledWith({
-        ...DEFAULT_FORM,
         flags: ['M', 'I'],
       })
     })
@@ -122,7 +124,6 @@ describe('RegexBuilder', () => {
       fireEvent.click(getByLabelText('re.M'))
 
       expect(callback).toHaveBeenCalledWith({
-        ...DEFAULT_FORM,
         flags: [],
       })
     })
@@ -144,7 +145,7 @@ describe('RegexBuilder', () => {
 
     it('renders the python method', () => {
       expect(getByTitle('Match type')).toMatchObject({
-        value: DEFAULT_FORM.matchType,
+        defaultValue: DEFAULT_FORM.matchType,
       })
     })
 
@@ -156,7 +157,6 @@ describe('RegexBuilder', () => {
       })
 
       expect(callback).toHaveBeenCalledWith({
-        ...DEFAULT_FORM,
         matchType: 'search',
       })
     })

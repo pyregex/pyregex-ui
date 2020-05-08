@@ -15,21 +15,47 @@ export interface RegexForm {
   matchType: 'match' | 'search' | 'findall'
 }
 
+export interface RegexFormChangeEvent {
+  regex?: string
+  testString?: string
+  flags?: string[]
+  matchType?: 'match' | 'search' | 'findall'
+}
+
 interface RegexBuilderProps {
-  onChange: (value: RegexForm) => any
+  onChange: (value: RegexFormChangeEvent) => any
   value: RegexForm
 }
+
+const RegexInput = React.memo(
+  function RegexInput({
+    value,
+    onChange,
+  }: {
+    value: string
+    onChange: (event: any) => void
+  }) {
+    return (
+      <TextField
+        id="regex"
+        label="Regex"
+        variant="outlined"
+        defaultValue={value}
+        onChange={onChange}
+      />
+    )
+  },
+  (prev, next) => prev.value === next.value,
+)
 
 export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
   const handleRegexChange = (event: any) =>
     onChange({
-      ...value,
       regex: event.target.value,
     })
 
   const handleTestStringChange = (event: any) =>
     onChange({
-      ...value,
       testString: event.target.value,
     })
 
@@ -45,14 +71,12 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
       newValue.splice(index, 1)
     }
     onChange({
-      ...value,
       flags: newValue,
     })
   }
 
   const handleMatchTypeChange = (event: any) => {
     onChange({
-      ...value,
       matchType: event.target.value,
     })
   }
@@ -77,13 +101,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
     <form>
       <div>
         regex = """
-        <TextField
-          id="regex"
-          label="Regex"
-          variant="outlined"
-          value={value.regex}
-          onChange={handleRegexChange}
-        />
+        <RegexInput onChange={handleRegexChange} value={value.regex} />
         """
       </div>
       <div>
@@ -93,6 +111,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
           label="Test String"
           multiline
           variant="outlined"
+          defaultValue={value.testString}
           onChange={handleTestStringChange}
         />
         """
@@ -107,7 +126,7 @@ export default function RegexBuilder({ value, onChange }: RegexBuilderProps) {
       <pre>
         &gt;&gt;&gt; re.compile(regex, flags).
         <Select
-          value={value.matchType}
+          defaultValue={value.matchType}
           onChange={handleMatchTypeChange}
           title="Match type"
         >
