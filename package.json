@@ -9,7 +9,9 @@
     "test": "test -z \"$CI\" && npm run test:watch || npm run test:ci",
     "test:ci": "jest --coverage",
     "test:watch": "jest --watch",
-    "test:debug": "node --inspect-brk ./node_modules/.bin/jest --watch --runInBand"
+    "test:debug": "node --inspect-brk ./node_modules/.bin/jest --watch --runInBand",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix"
   },
   "browserslist": {
     "production": [
@@ -31,8 +33,13 @@
     "@testing-library/jest-dom": "^5.11.0",
     "@testing-library/svelte": "^3.0.0",
     "babel-jest": "^26.1.0",
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "14.2.0",
+    "eslint-plugin-import": "^2.21.2",
+    "eslint-plugin-jest": "^23.18.0",
+    "eslint-plugin-svelte3": "^2.7.3",
     "jest": "^26.1.0",
-    "prettier": "^2.0.4",
+    "prettier": "^2.0.5",
     "rollup": "^2.19.0",
     "rollup-plugin-livereload": "^1.3.0",
     "rollup-plugin-svelte": "^5.2.3",
